@@ -72,7 +72,7 @@
     <string name="TOAST_ERR_NO_NETWORK">Nenhuma rede encontrada, leia as \'Dicas\' para obter ajuda</string>
 
     <!-- Setup1Fragment ~ Layout -->
-    <string name="SETUP1_TITLE">Selecione a rede criada pelo seu dispotivo:</string>
+    <string name="SETUP1_TITLE">Selecione a rede criada pelo seu dispositivo:</string>
     <string name="SETUP1_TIP_TEXT">1. Se nenhuma rede for exibida e não estiver usando a facilidade de localização, conecte-se manualmente à rede do dispositivo e reinicie o processo;\n2. Se nenhuma rede for exibida e estiver usando a facilidade de localização, certifique-se que a mesma (Localização/GPS) está ligada. Caso não, ligue-a e reinicie o processo;\n3. Caso o dispositivo não esteja gerando uma rede (nenhum LED aceso), reinicie o processo e pressione novamente o botão de reset do dispositivo;\n4. A rede criada pelo dispositivo é composta da tag \'DISP_\' e do MAC do dispositivo;\n5. O MAC do dispositivo se encontra em uma etiqueta no próprio dispositivo;</string>
 
     <!-- Setup2Fragment ~ Class -->
