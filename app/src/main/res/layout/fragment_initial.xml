@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightBlue"
+    android:clickable="true"
+    android:focusable="true">
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/round_rect"
+        tools:context=".Fragments.WifiFragments.InitialFragment">
+
+        <!-- TODO: Update blank fragment layout -->
+
+        <TextView
+            android:id="@+id/txtSteps"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/INITIAL_WELCOME_TEXT"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/txtWelcome"
+            app:layout_constraintStart_toStartOf="@+id/txtWelcome"
+            app:layout_constraintTop_toBottomOf="@+id/txtWelcome" />
+
+        <TextView
+            android:id="@+id/txtHints2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/INITIAL_TIP_TEXT"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/txtHint"
+            app:layout_constraintStart_toStartOf="@+id/txtHint"
+            app:layout_constraintTop_toBottomOf="@+id/txtHint" />
+
+        <TextView
+            android:id="@+id/txtWelcome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/INITIAL_WELCOME_TITLE"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
+
+        <TextView
+            android:id="@+id/txtHint"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/INITIAL_TIP"
+            android:textAlignment="textStart"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/txtSteps"
+            app:layout_constraintStart_toStartOf="@+id/txtSteps"
+            app:layout_constraintTop_toBottomOf="@+id/txtSteps" />
+
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="24dp"
+            android:text="@string/INITIAL_TITLE"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgLogo"
+            android:layout_width="180dp"
+            android:layout_height="110dp"
+            android:contentDescription="@string/CD_LOGO"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTitle"
+            app:srcCompat="@drawable/wifi" />
+
+        <Button
+            android:id="@+id/btn_setup1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/round_rect_btn"
+            android:paddingLeft="42dp"
+            android:paddingRight="42dp"
+            android:text="@string/INITIAL_START"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+</FrameLayout>

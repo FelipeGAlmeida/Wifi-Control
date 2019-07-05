@@ -1,0 +1,110 @@
+<resources>
+    <string name="app_name">Controle Wifi</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Debug -->
+    <string name="D_TAG">APP LOG</string>
+    <string name="D_CONN">Conectando......</string>
+
+    <!-- Generics -->
+    <string name="BACK">Voltar</string>
+    <string name="TIPS">Dicas:</string>
+    <string name="RESTART">Reiniciar</string>
+    <string name="NEXT_STEP">Próximo</string>
+    <string name="TOAST_ERR_SMT_WRONG">Algo errado aconteceu, tente novamente mais tarde</string>
+    <string name="TOAST_ERR_DETECT_NETWORK">Não foi possível detectar as redes disponíveis, tente novamente mais tarde</string>
+
+    <!-- Tub Control -->
+    <string name="TUB_CONTROL">Controle da Banheira</string>
+    <string name="TUB_CONTROL_C">Opções da Banheira</string>
+
+    <!-- Controls -->
+    <string name="SELECT_TO_CONTROL">Selecione o que deseja controlar:</string>
+    <string name="ENGINE_POWER">Potência do motor</string>
+    <string name="CROMOTHERAPY">Cromoterapia</string>
+    <string name="TEMPERTURE">Temperatura</string>
+
+    <!-- Engine -->
+    <string name="ENGINE">Motor</string>
+    <string name="SELECT_ENGINE_POWER">Selecione a potência do motor:</string>
+    <string name="ENGINE_POWER_MAX">Máxima\n(Hidromassagem)</string>
+    <string name="ENGINE_POWER_MED">Média\n(Circulação)</string>
+    <string name="ENGINE_POWER_OFF">Desligado</string>
+
+    <!-- Color -->
+    <string name="COLOR">Cores</string>
+    <string name="SELECT_LIGHT_COLOR">Selecione a cor da luz da banheira:</string>
+
+    <!--Temperatura-->
+    <string name="SELECT_TEMPERTURE">Selecione a temperatura da banheira:</string>
+    <string name="CELSIUS">°C</string>
+
+    <!-- Wifi Control -->
+    <string name="NETWORK_SETUP">Configurações de Rede</string>
+    <string name="NETWORK_SETUP_C">Config. de Rede</string>
+
+    <!-- Wifi Activity -->
+    <string name="BOX_PERMISSION_TITLE">Permita ao aplicativo acessar sua localização.</string>
+    <string name="BOX_PERMISSION_TEXT">Sua localização é necessária para que possamos identificar as redes disponíveis automaticamente, poupando o trabalho de conectar-se manualmente.</string>
+    <string name="REMIND_LOCATION">Não se esqueça de ligar sua localização, sem ela, a permissão concedida não irá funcionar.</string>
+    <string name="SKIP_IF_PROMPT">Caso não queira a facilidade, toque em pular quando perguntado.</string>
+
+    <string name="OK">OK</string>
+
+    <string name="PERMISSION_GRANTED_RESP">Não se esqueça de ligar sua localização, sem ela, a permissão concedida não irá funcionar</string>
+    <string name="PERMISSION_DENY_RESP">Caso não queira a facilidade, toque em pular quando perguntado</string>
+
+    <!-- InitialFragment ~ Class -->
+    <string name="DIALOG_PERMISSION_TITLE">Permissão de localização requerida</string>
+    <string name="DIALOG_PERMISSION_TEXT">Para facilitar o processo de configuração utilizamos sua localização para encontrarmos de maneira ativa as redes próximas a você. Portanto se quiser prosseguir com maior facilidade, conceda a permissão e ligue a localização de seu aparelho. Caso não queira, certifique-se de que seu aparelho conheça a rede do dispositivo e pule esta etapa.</string>
+    <string name="DIALOG_SKIP">Pular</string>
+    <string name="DIALOG_ALLOW">Permitir</string>
+
+    <!-- InitialFragment ~ Layout -->
+    <string name="INITIAL_TITLE">Assistente de Configuração de rede</string>
+    <string name="INITIAL_WELCOME_TITLE">Para começar com a configuração da nova rede, faça o seguinte:</string>
+    <string name="INITIAL_WELCOME_TEXT">1. Aproxime o celular do dispositivo;\n2. Pressione o botão de reset e aguarde o LED acender, isso pode demorar até 30 segundos;\n3. O LED indica que a rede foi iniciada, após aceso toque no botão abaixo para começar o processo;</string>
+    <string name="INITIAL_TIP">Dica:</string>
+    <string name="INITIAL_TIP_TEXT">1. Conceder a permissão de localização e ativa-la torna o processo mais fácil, rápido e automático;</string>
+    <string name="INITIAL_START">Começar</string>
+
+    <!-- Setup1Fragment ~ Class -->
+    <string name="TOAST_ERR_NO_NETWORK">Nenhuma rede encontrada, leia as \'Dicas\' para obter ajuda</string>
+
+    <!-- Setup1Fragment ~ Layout -->
+    <string name="SETUP1_TITLE">Selecione a rede criada pelo seu dispotivo:</string>
+    <string name="SETUP1_TIP_TEXT">1. Se nenhuma rede for exibida e não estiver usando a facilidade de localização, conecte-se manualmente à rede do dispositivo e reinicie o processo;\n2. Se nenhuma rede for exibida e estiver usando a facilidade de localização, certifique-se que a mesma (Localização/GPS) está ligada. Caso não, ligue-a e reinicie o processo;\n3. Caso o dispositivo não esteja gerando uma rede (nenhum LED aceso), reinicie o processo e pressione novamente o botão de reset do dispositivo;\n4. A rede criada pelo dispositivo é composta da tag \'DISP_\' e do MAC do dispositivo;\n5. O MAC do dispositivo se encontra em uma etiqueta no próprio dispositivo;</string>
+
+    <!-- Setup2Fragment ~ Class -->
+    <string name="TOAST_ERR_NO_PASSWORD">Insira uma senha para poder prosseguir</string>
+    <string name="TOAST_ERR_CANT_CONNECT">Não foi possível se conectar na rede do dispositivo, tente novamente mais tarde</string>
+    <string name="TOAST_ERR_NO_AVAILABLE_NETWORK">Não foram encontradas redes disponíveis</string>
+
+    <!-- Setup2Fragment ~ Layout -->
+    <string name="SETUP2_TITLE">Preencha os campos abaixo com os dados da sua rede:</string>
+    <string name="SETUP2_SSID">Nome da rede (SSID):</string>
+    <string name="SETUP2_PSWD">Senha da rede:</string>
+    <string name="SETUP2_TIP_TEXT">1. O primeiro campo sempre irá sugerir o nome da rede a qual você se encontra conectado, mas pode ser alterado;\n2. Lembrando que caso entre com os dados incorretos, é sempre possível apertar o botão de reset e refazer os passos novamente;</string>
+
+    <!-- FinalFragment ~ Class -->
+    <string name="FINISH">Finalizar</string>
+    <string name="NETWORK_APPLIED">Nova rede aplicada com sucesso!</string>
+    <string name="THANKS">Obrigado por utilizar esta aplicação, volte sempre.</string>
+    <string name="NETWORK_FAILED">Falha ao aplicar nova rede.</string>
+    <string name="VERIFY_NETWORK">Verifique se a rede do dispositivo está correta, o LED deve estar aceso.\nCaso não, pressione o  botão de reset e reinicie o processo.</string>
+
+    <!-- FinalFragment ~ Layout -->
+    <string name="WAIT">Aguarde</string>
+    <string name="FINAL_TEXT">Aplicando nova rede, aguarde....</string>
+    <string name="FINAL_SUBTEXT">Está operação pode levar até 1 minuto</string>
+
+    <!-- Add Control -->
+    <string name="ADD_DEVICE">Adicionar novo dispositivo</string>
+    <string name="CONTACT_ADD">Contate o desenvolvedor para adicionar novos dispositivos!</string>
+
+    <!-- Layout Images Content Description -->
+    <string name="CD_STEP">Indica o passo atual da tela</string>
+    <string name="CD_STATUS">Indica o estado atual do processo</string>
+    <string name="CD_LOGO">O logotipo da plataforma</string>
+
+</resources>

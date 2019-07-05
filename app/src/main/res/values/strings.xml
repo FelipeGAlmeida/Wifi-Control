@@ -1,0 +1,108 @@
+<resources>
+    <string name="app_name">Wifi Control</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Debug -->
+    <string name="D_TAG">APP LOG</string>
+    <string name="D_CONN">Connecting......</string>
+
+    <!-- Generics -->
+    <string name="BACK">Go back</string>
+    <string name="TIPS">Tips:</string>
+    <string name="RESTART">Restart</string>
+    <string name="NEXT_STEP">Next</string>
+    <string name="TOAST_ERR_SMT_WRONG">Something wrong happens, try again later</string>
+    <string name="TOAST_ERR_DETECT_NETWORK">Can\'t detect the available networks, try again later</string>
+
+    <!-- Tub Control -->
+    <string name="TUB_CONTROL">Bathtub Control</string>
+    <string name="TUB_CONTROL_C">Bathtub Control</string>
+
+    <!-- Controls -->
+    <string name="SELECT_TO_CONTROL">Select what you want to control:</string>
+    <string name="ENGINE_POWER">Engine power</string>
+    <string name="CROMOTHERAPY">Cromotherapy</string>
+    <string name="TEMPERTURE">Temperture</string>
+
+    <!-- Engine -->
+    <string name="ENGINE">Engine</string>
+    <string name="SELECT_ENGINE_POWER">Select the engine power:</string>
+    <string name="ENGINE_POWER_MAX">Maximum\n(Whirlpool)</string>
+    <string name="ENGINE_POWER_MED">Medium\n(Circulation)</string>
+    <string name="ENGINE_POWER_OFF">Off</string>
+
+    <!-- Color -->
+    <string name="COLOR">Colors</string>
+    <string name="SELECT_LIGHT_COLOR">Select the color of the tub lights:</string>
+
+    <!--Temperatura-->
+    <string name="SELECT_TEMPERTURE">Select the temperture of the tub:</string>
+    <string name="CELSIUS">°C</string>
+
+    <!-- Wifi Control -->
+    <string name="NETWORK_SETUP">Network Setup</string>
+    <string name="NETWORK_SETUP_C">Network Setup</string>
+
+    <!-- Wifi Activity -->
+    <string name="BOX_PERMISSION_TITLE">Let the app access your location.</string>
+    <string name="BOX_PERMISSION_TEXT">Your location is necessary in order to identify the available network automatically, saving you from doing this manually.</string>
+
+    <string name="OK">OK</string>
+
+    <string name="PERMISSION_GRANTED_RESP">Don\'t forget to turn on the location, without it, the given permission will not work</string>
+    <string name="PERMISSION_DENY_RESP">If you don\'t want help, choose to skip when prompt</string>
+
+    <!-- InitialFragment ~ Class -->
+    <string name="DIALOG_PERMISSION_TITLE">Location permission required</string>
+    <string name="DIALOG_PERMISSION_TEXT">For an easier process of configuration we use your location to find the networks next you. So, if you want some help, give the permission and turn on the location in you phone. If you don\'t, certify your phone knows the device\'s network and skip this step.</string>
+    <string name="DIALOG_SKIP">Skip</string>
+    <string name="DIALOG_ALLOW">Allow</string>
+
+    <!-- InitialFragment ~ Layout -->
+    <string name="INITIAL_TITLE">Network configuration assistant</string>
+    <string name="INITIAL_WELCOME_TITLE">To start with the configuration, do the following:</string>
+    <string name="INITIAL_WELCOME_TEXT">1. Get the phone and device near;\n2. Press the reset button and wait for the LED, it can lasts until 30 seconds;\n3. The LED indicates the network is ready, after on, click in the button below to start the process;</string>
+    <string name="INITIAL_TIP">Tip:</string>
+    <string name="INITIAL_TIP_TEXT">1. Allow the access to your location and activate it, makes the process easier, faster and smarter;</string>
+    <string name="INITIAL_START">Start</string>
+
+    <!-- Setup1Fragment ~ Class -->
+    <string name="TOAST_ERR_NO_NETWORK">No network found, read the \'Tips\' to get some help</string>
+
+    <!-- Setup1Fragment ~ Layout -->
+    <string name="SETUP1_TITLE">Select the network created by your device:</string>
+    <string name="SETUP1_TIP_TEXT">1. If no network was found, and you aren\'t using the location help, connect manually to the device network and restart the process;\n2. If no network was found and you art using the location help, certify the location (Location/GPS) is turned on. If doesn\'t, turn it on and restart the process;\n3. If the device isn\'t creating any network (LED is off), restart the process and press the reset button of the device again;\n4. The network created by the device is the tag \'DISP_\' followed by the MAC of the device;\n5. The device MAC can be found in a label sticked on it;</string>
+
+    <!-- Setup2Fragment ~ Class -->
+    <string name="TOAST_ERR_NO_PASSWORD">Insert the network password to proceeded</string>
+    <string name="TOAST_ERR_CANT_CONNECT">Can\'t connect to the device network, try again later</string>
+    <string name="TOAST_ERR_NO_AVAILABLE_NETWORK">No available networks were found</string>
+
+    <!-- Setup2Fragment ~ Layout -->
+    <string name="SETUP2_TITLE">Fill the fields below with your network credentials:</string>
+    <string name="SETUP2_SSID">Network name (SSID):</string>
+    <string name="SETUP2_PSWD">Network password:</string>
+    <string name="SETUP2_TIP_TEXT">1. The first field always will bring your current connected network, but you can change if needed;\n2. Remember it\'s always possible to change the network again if you accidentally fill the fields incorrectly, you just need to press the reset button again and start the process again;</string>
+
+    <!-- FinalFragment ~ Class -->
+    <string name="FINISH">Finish</string>
+    <string name="NETWORK_APPLIED">New network applied successfully!</string>
+    <string name="THANKS">Thank you to use this application, come back soon.</string>
+    <string name="NETWORK_FAILED">Fail to apply new network.</string>
+    <string name="VERIFY_NETWORK">Verify if the device\'s network is correct, the LED should be on.\nIf don\'t, pess the reset button again and restart the process.</string>
+
+    <!-- FinalFragment ~ Layout -->
+    <string name="WAIT">Wait</string>
+    <string name="FINAL_TEXT">Applying new network....</string>
+    <string name="FINAL_SUBTEXT">This opperation may last 1 minute</string>
+
+    <!-- Add Control -->
+    <string name="ADD_DEVICE">Add new device</string>
+    <string name="CONTACT_ADD">Contact the developer to add new devices!</string>
+
+    <!-- Layout Images Content Description -->
+    <string name="CD_STEP">Indicates the current step of the page</string>
+    <string name="CD_STATUS">Indicates the current status of the process</string>
+    <string name="CD_LOGO">The logo of the platform</string>
+
+</resources>

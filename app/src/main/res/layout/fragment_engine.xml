@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightBlue"
+    android:clickable="true"
+    android:focusable="true"
+    tools:context=".Fragments.TubFragments.EngineFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/round_rect">
+
+        <ImageView
+            android:id="@+id/imgLevels"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/ENGINE_POWER"
+            android:scaleType="fitEnd"
+            android:src="@drawable/levels_off"
+            app:layout_constraintBottom_toBottomOf="@+id/skbPower"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtEngineTitle" />
+
+        <TextView
+            android:id="@+id/txtEngineTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="casual"
+            android:text="@string/SELECT_ENGINE_POWER"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/imgLevels"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.507"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtEngineOff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="65dp"
+            android:fontFamily="casual"
+            android:text="@string/ENGINE_POWER_OFF"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/txtEngineMed"
+            app:layout_constraintStart_toStartOf="@+id/txtEngineMed"
+            app:layout_constraintTop_toBottomOf="@+id/txtEngineMed" />
+
+        <TextView
+            android:id="@+id/txtEngineMed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="65dp"
+            android:fontFamily="casual"
+            android:text="@string/ENGINE_POWER_MED"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/txtEngineMax"
+            app:layout_constraintStart_toStartOf="@+id/txtEngineMax"
+            app:layout_constraintTop_toBottomOf="@+id/txtEngineMax" />
+
+        <TextView
+            android:id="@+id/txtEngineMax"
+            android:layout_width="wrap_content"
+            android:layout_height="58dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="68dp"
+            android:fontFamily="casual"
+            android:text="@string/ENGINE_POWER_MAX"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@+id/imgGearMax"
+            app:layout_constraintTop_toBottomOf="@+id/txtEngineTitle" />
+
+        <ImageView
+            android:id="@+id/imgGearMed"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="16dp"
+            android:contentDescription="@string/ENGINE_POWER_MED"
+            android:src="@drawable/gear_med"
+            app:layout_constraintBottom_toBottomOf="@+id/txtEngineMed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txtEngineMed" />
+
+        <ImageView
+            android:id="@+id/imgGearOff"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="16dp"
+            android:contentDescription="@string/ENGINE_POWER_OFF"
+            android:src="@drawable/gear"
+            app:layout_constraintBottom_toBottomOf="@+id/txtEngineOff"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txtEngineOff" />
+
+        <ImageView
+            android:id="@+id/imgGearMax"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="16dp"
+            android:contentDescription="@string/ENGINE_POWER_MAX"
+            android:src="@drawable/gear_max"
+            app:layout_constraintBottom_toBottomOf="@+id/txtEngineMax"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txtEngineMax" />
+
+        <SeekBar
+            android:id="@+id/skbPower"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="0dp"
+            android:layout_height="320dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:alpha="0"
+            android:max="2"
+            android:progress="0"
+            android:rotation="270"
+            app:layout_constraintBottom_toBottomOf="@+id/txtEngineOff"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txtEngineMax"
+            app:tickMark="@android:drawable/list_selector_background" />
+
+        <Button
+            android:id="@+id/btnEngineBack"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/round_rect_btn"
+            android:text="@string/BACK"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+</FrameLayout>
