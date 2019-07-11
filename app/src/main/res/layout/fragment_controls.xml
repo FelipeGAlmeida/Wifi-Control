@@ -17,9 +17,11 @@
         <ImageView
             android:id="@+id/imgEngine"
             android:layout_width="0dp"
-            android:layout_height="135dp"
+            android:layout_height="0dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/round_rect_btn"
             android:contentDescription="@string/ENGINE"
             android:paddingBottom="30dp"
@@ -32,9 +34,11 @@
         <ImageView
             android:id="@+id/imgColor"
             android:layout_width="0dp"
-            android:layout_height="135dp"
+            android:layout_height="0dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/round_rect_btn"
             android:contentDescription="@string/CROMOTHERAPY"
             android:paddingBottom="35dp"
@@ -47,9 +51,11 @@
         <ImageView
             android:id="@+id/imgTemperature"
             android:layout_width="0dp"
-            android:layout_height="135dp"
+            android:layout_height="0dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/round_rect_btn"
             android:contentDescription="@string/TEMPERTURE"
             android:paddingBottom="35dp"
@@ -64,7 +70,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:fontFamily="casual"
             android:text="@string/SELECT_TO_CONTROL"
             android:textAlignment="center"
@@ -88,7 +96,7 @@
             app:layout_constraintEnd_toEndOf="@+id/imgEngine"
             app:layout_constraintStart_toStartOf="@+id/imgEngine"
             app:layout_constraintTop_toTopOf="@+id/imgEngine"
-            app:layout_constraintVertical_bias="0.85" />
+            app:layout_constraintVertical_bias="0.93" />
 
         <TextView
             android:id="@+id/textView5"
@@ -102,7 +110,7 @@
             app:layout_constraintEnd_toEndOf="@+id/imgColor"
             app:layout_constraintStart_toStartOf="@+id/imgColor"
             app:layout_constraintTop_toTopOf="@+id/imgColor"
-            app:layout_constraintVertical_bias="0.85" />
+            app:layout_constraintVertical_bias="0.93" />
 
         <TextView
             android:id="@+id/textView6"
@@ -116,6 +124,6 @@
             app:layout_constraintEnd_toEndOf="@+id/imgTemperature"
             app:layout_constraintStart_toStartOf="@+id/imgTemperature"
             app:layout_constraintTop_toTopOf="@+id/imgTemperature"
-            app:layout_constraintVertical_bias="0.85" />
+            app:layout_constraintVertical_bias="0.93" />
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>

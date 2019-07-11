@@ -1,8 +1,12 @@
 package br.com.agte.agt_tubproject.Fragments.TubFragments;
 
-import android.content.Context;
-import android.os.Bundle;
 import android.app.Fragment;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +28,7 @@ public class TemperatureFragment extends Fragment implements SeekBar.OnSeekBarCh
     TextView txt_temp;
 
     int temp_level = 25;
+    boolean canSend = false;
     Timer t_anim;
 
     public TemperatureFragment() {
@@ -52,9 +57,32 @@ public class TemperatureFragment extends Fragment implements SeekBar.OnSeekBarCh
         Utils.setToolbar(getActivity(), null, R.string.TEMPERTURE, R.drawable.temp);
 
         temp_level = SaveConfigs.getInstance(getContext()).loadTemperaturePrefs();
+        //skbTemp.setProgress(temp_level);
         animate(temp_level);
 
         return v;
+    }
+
+    private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // Get extra data included in the Intent
+            int t = intent.getIntExtra(Constants.TEMPERATURE,-999);
+            if(t >= 0) skbTemp.setProgress(t-Constants.MIN_TEMP);
+        }
+    };
+
+    @Override
+    public void onResume() {
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,
+                new IntentFilter("custom-event-name2"));
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(mMessageReceiver);
+        super.onPause();
     }
 
     @Override
@@ -73,6 +101,8 @@ public class TemperatureFragment extends Fragment implements SeekBar.OnSeekBarCh
     public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
         temp_level = i + Constants.MIN_TEMP;
         txt_temp.setText(Integer.toString(temp_level));
+        if(canSend)
+            Utils.sendDataOverBT(getActivity(), Constants.TEMPERATURE, (byte)temp_level);
     }
 
     @Override
@@ -86,6 +116,7 @@ public class TemperatureFragment extends Fragment implements SeekBar.OnSeekBarCh
     }
 
     private void animate(final int toProgess){
+        canSend = false;
         t_anim = new Timer();
         t_anim.scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -93,8 +124,15 @@ public class TemperatureFragment extends Fragment implements SeekBar.OnSeekBarCh
                 int progress = skbTemp.getProgress();
                 if(progress<toProgess-Constants.MIN_TEMP)
                     skbTemp.setProgress(progress+1);
-                else
+                else {
+                    try {
+                        Thread.sleep(450);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    canSend = true;
                     cancel();
+                }
             }
         },0,95);
     }

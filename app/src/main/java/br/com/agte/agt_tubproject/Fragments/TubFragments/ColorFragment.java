@@ -1,10 +1,14 @@
 package br.com.agte.agt_tubproject.Fragments.TubFragments;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +21,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import br.com.agte.agt_tubproject.R;
+import br.com.agte.agt_tubproject.Utils.Constants;
 import br.com.agte.agt_tubproject.Utils.SaveConfigs;
 import br.com.agte.agt_tubproject.Utils.Utils;
 
@@ -28,6 +33,7 @@ public class ColorFragment extends Fragment implements SeekBar.OnSeekBarChangeLi
     ImageView img_ColorShow;
 
     int r, g, b;
+    boolean canSend = false;
     Timer t_anim;
 
     public ColorFragment() {
@@ -71,9 +77,37 @@ public class ColorFragment extends Fragment implements SeekBar.OnSeekBarChangeLi
         return v;
     }
 
+    private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            int r = intent.getIntExtra(Constants.COLOR_R,-999);
+            if(r >= 0) skb_red.setProgress(r);
+            int g = intent.getIntExtra(Constants.COLOR_G,-999);
+            if(g >= 0) skb_green.setProgress(g);
+            int b = intent.getIntExtra(Constants.COLOR_B,-999);
+            if(b >= 0) skb_blue.setProgress(b);
+        }
+    };
+
     private void decodeSavedColorString(String colorString){
         String[] rgb = colorString.split("~");
+//        skb_red.setProgress(Integer.parseInt(rgb[0]));
+//        skb_green.setProgress(Integer.parseInt(rgb[1]));
+//        skb_blue.setProgress(Integer.parseInt(rgb[2]));
         animate(Integer.parseInt(rgb[0]), Integer.parseInt(rgb[1]), Integer.parseInt(rgb[2]));
+    }
+
+    @Override
+    public void onResume() {
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,
+                new IntentFilter("custom-event-name2"));
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(mMessageReceiver);
+        super.onPause();
     }
 
     @Override
@@ -98,12 +132,18 @@ public class ColorFragment extends Fragment implements SeekBar.OnSeekBarChangeLi
         switch (seekBar.getId()){
             case R.id.skbRed:
                 r = i;
+                if(canSend)
+                    Utils.sendDataOverBT(getActivity(), Constants.COLOR_R,(byte) r);
                 break;
             case R.id.skbGreen:
                 g = i;
+                if(canSend)
+                    Utils.sendDataOverBT(getActivity(), Constants.COLOR_G,(byte) g);
                 break;
             case R.id.skbBlue:
                 b = i;
+                if(canSend)
+                    Utils.sendDataOverBT(getActivity(), Constants.COLOR_B,(byte) b);
                 break;
         }
         updateColorShow();
@@ -120,6 +160,7 @@ public class ColorFragment extends Fragment implements SeekBar.OnSeekBarChangeLi
     }
 
     private void animate(final int toProgess_r, final int toProgess_g, final int toProgess_b){
+        canSend = false;
         t_anim = new Timer();
         t_anim.scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -136,7 +177,15 @@ public class ColorFragment extends Fragment implements SeekBar.OnSeekBarChangeLi
 
                 if(progress_r == toProgess_r &&
                     progress_g == toProgess_g &&
-                    progress_b == toProgess_b) cancel();
+                    progress_b == toProgess_b){
+                    try {
+                        Thread.sleep(450);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    canSend = true;
+                    cancel();
+                }
 
             }
         },0,5);

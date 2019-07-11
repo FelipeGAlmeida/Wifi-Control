@@ -3,8 +3,9 @@ package br.com.agte.agt_tubproject.Activities;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -12,20 +13,20 @@ import br.com.agte.agt_tubproject.R;
 import br.com.agte.agt_tubproject.Service.BluetoothService;
 import br.com.agte.agt_tubproject.Utils.Utils;
 
-public class TubActivity extends AppCompatActivity {
+public class ConnectActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tub);
+        setContentView(R.layout.activity_connect);
 
-        Utils.setToolbar(this, getSupportActionBar(), R.string.TUB_CONTROL_C, R.drawable.jacuzzi);
+        Utils.setToolbar(this, getSupportActionBar(), R.string.NETWORK_SETUP_C, R.drawable.bluetooth);
     }
 
     public void replaceFragments(Fragment fragment, String tag){
         // Insert the fragment by replacing any existing fragment
         FragmentTransaction fragmentManager = getFragmentManager().beginTransaction();
-        fragmentManager.replace(R.id.fragment_tub_container, fragment)
+        fragmentManager.replace(R.id.fragment_conn_container, fragment)
                 .addToBackStack(tag)
                 .commit();
     }
@@ -41,6 +42,9 @@ public class TubActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }else{
+            Intent intent = new Intent("custom-event-name");
+            intent.putExtra("CONN", BluetoothService.isConnected());
+            LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
             onBackPressed();
         }
 
@@ -51,9 +55,21 @@ public class TubActivity extends AppCompatActivity {
     public void onBackPressed(){
         if(getFragmentManager().getBackStackEntryCount() <= 1){
             super.onBackPressed();
-            Utils.setToolbar(this, getSupportActionBar(), R.string.TUB_CONTROL_C, R.drawable.jacuzzi);
         } else {
             getFragmentManager().popBackStack();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 123){
+            if(resultCode == RESULT_OK){
+                BluetoothService.self(this).connectToDevice(null);
+            }else{
+                onBackPressed();
+                Toast.makeText(this, "Nenhum dispositivo conectado!", Toast.LENGTH_LONG);
+            }
         }
     }
 }

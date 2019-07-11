@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import br.com.agte.agt_tubproject.Fragments.AddFragments.AddControlFragment;
+import br.com.agte.agt_tubproject.Fragments.BtFragments.BtControlFragment;
 import br.com.agte.agt_tubproject.Fragments.TubFragments.TubControlFragment;
 import br.com.agte.agt_tubproject.Fragments.WifiFragments.WifiControlFragment;
 
@@ -24,15 +25,16 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         // Return a PlaceholderFragment (defined as a static inner class below).
         switch (position){
             case 0: return new TubControlFragment();
-            case 1: return new WifiControlFragment();
-            case 2: return new AddControlFragment();
+            case 1: return new BtControlFragment();
+            case 2: return new WifiControlFragment();
+            case 3: return new AddControlFragment();
         }
         return null;
     }
 
     @Override
     public int getCount() {
-        // Show 2 total pages.
-        return 3;
+        // Show 4 total pages.
+        return 4;
     }
 }

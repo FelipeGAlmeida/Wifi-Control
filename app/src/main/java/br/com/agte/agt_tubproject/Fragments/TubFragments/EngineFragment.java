@@ -1,10 +1,14 @@
 package br.com.agte.agt_tubproject.Fragments.TubFragments;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +19,15 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import br.com.agte.agt_tubproject.R;
-import br.com.agte.agt_tubproject.Service.PostService;
+import br.com.agte.agt_tubproject.Service.BluetoothService;
+import br.com.agte.agt_tubproject.Utils.Commands;
+import br.com.agte.agt_tubproject.Utils.Constants;
 import br.com.agte.agt_tubproject.Utils.SaveConfigs;
 import br.com.agte.agt_tubproject.Utils.Utils;
 
@@ -33,6 +41,7 @@ public class EngineFragment extends Fragment implements SeekBar.OnSeekBarChangeL
     Animation rot_max_anim;
     Typeface default_typeface;
 
+    SeekBar skbPower;
     ImageView imgGear_off;
     ImageView imgGear_med;
     ImageView imgGear_max;
@@ -45,7 +54,6 @@ public class EngineFragment extends Fragment implements SeekBar.OnSeekBarChangeL
     int color = MIN_COLOR;
     boolean falling = false;
     Timer t_anim;
-    Timer send_info;
 
     public EngineFragment() {
         // Required empty public constructor
@@ -75,7 +83,7 @@ public class EngineFragment extends Fragment implements SeekBar.OnSeekBarChangeL
 
         imgLevels = v.findViewById(R.id.imgLevels);
 
-        SeekBar skbPower = v.findViewById(R.id.skbPower);
+        skbPower = v.findViewById(R.id.skbPower);
         skbPower.setOnSeekBarChangeListener(this);
 
         Button btnBack = v.findViewById(R.id.btnEngineBack);
@@ -95,6 +103,28 @@ public class EngineFragment extends Fragment implements SeekBar.OnSeekBarChangeL
         animate();
 
         return v;
+    }
+
+    private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // Get extra data included in the Intent
+            int e = intent.getIntExtra(Constants.ENGINE,-999);
+            if(e >= 0) skbPower.setProgress(e);
+        }
+    };
+
+    @Override
+    public void onResume() {
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,
+                new IntentFilter("custom-event-name2"));
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(mMessageReceiver);
+        super.onPause();
     }
 
     @Override
@@ -155,6 +185,7 @@ public class EngineFragment extends Fragment implements SeekBar.OnSeekBarChangeL
                 imgGear_max.startAnimation(rot_max_anim);
                 break;
         }
+        Utils.sendDataOverBT(getActivity(), Constants.ENGINE, (byte)engine_level);
     }
 
     @Override

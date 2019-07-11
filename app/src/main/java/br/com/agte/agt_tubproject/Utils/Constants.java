@@ -20,10 +20,13 @@ public class Constants {
     public static final String SSID_VALUE = "SSID";
     public static final String PSWD_VALUE = "PSWD";
 
-    // Fragment TAGs
+    // Control TAGs
     public static final String CONTROL = "Control";
     public static final String ENGINE = "Engine";
     public static final String COLOR = "Color";
+    public static final String COLOR_R = "Color_r";
+    public static final String COLOR_G = "Color_g";
+    public static final String COLOR_B = "Color_b";
     public static final String TEMPERATURE = "Temperature";
 
     public static final String INITIAL = "Initial";

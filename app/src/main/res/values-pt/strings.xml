@@ -43,11 +43,13 @@
     <string name="NETWORK_SETUP">Configurações de Rede</string>
     <string name="NETWORK_SETUP_C">Config. de Rede</string>
 
+    <!-- Wifi Control -->
+    <string name="BT_SETUP">Configurações de Bluetooth</string>
+    <string name="BT_SETUP_C">Config. de Bluetooth</string>
+
     <!-- Wifi Activity -->
     <string name="BOX_PERMISSION_TITLE">Permita ao aplicativo acessar sua localização.</string>
     <string name="BOX_PERMISSION_TEXT">Sua localização é necessária para que possamos identificar as redes disponíveis automaticamente, poupando o trabalho de conectar-se manualmente.</string>
-    <string name="REMIND_LOCATION">Não se esqueça de ligar sua localização, sem ela, a permissão concedida não irá funcionar.</string>
-    <string name="SKIP_IF_PROMPT">Caso não queira a facilidade, toque em pular quando perguntado.</string>
 
     <string name="OK">OK</string>
 

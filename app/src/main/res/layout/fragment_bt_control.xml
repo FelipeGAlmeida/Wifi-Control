@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightBlue"
-    tools:context=".Fragments.TubFragments.TubControlFragment">
+    tools:context=".Fragments.WifiFragments.WifiControlFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -15,7 +15,7 @@
         android:background="@drawable/round_rect">
 
         <ImageView
-            android:id="@+id/imgAddIcon"
+            android:id="@+id/imgBtIcon"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="30dp"
@@ -23,23 +23,23 @@
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/card_show"
-            android:contentDescription="@string/TUB_CONTROL"
+            android:contentDescription="@string/BT_SETUP"
             android:scaleType="fitCenter"
-            android:src="@drawable/jacuzzi"
-            app:layout_constraintBottom_toTopOf="@+id/txtControleBanheira"
+            android:src="@drawable/bluetooth"
+            app:layout_constraintBottom_toTopOf="@+id/textView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/txtControleBanheira"
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="16dp"
             android:fontFamily="casual"
-            android:text="@string/TUB_CONTROL"
+            android:text="@string/BT_SETUP"
             android:textColor="@android:color/black"
             android:textSize="24sp"
             android:textStyle="bold"

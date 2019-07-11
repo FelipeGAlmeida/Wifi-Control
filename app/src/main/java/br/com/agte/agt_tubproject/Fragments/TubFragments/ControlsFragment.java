@@ -1,9 +1,13 @@
 package br.com.agte.agt_tubproject.Fragments.TubFragments;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +17,10 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 
+import br.com.agte.agt_tubproject.Activities.ConnectActivity;
 import br.com.agte.agt_tubproject.Activities.TubActivity;
-import br.com.agte.agt_tubproject.Fragments.WifiFragments.Setup1Fragment;
 import br.com.agte.agt_tubproject.R;
+import br.com.agte.agt_tubproject.Service.BluetoothService;
 import br.com.agte.agt_tubproject.Utils.Constants;
 
 public class ControlsFragment extends Fragment implements Animation.AnimationListener {
@@ -40,7 +45,7 @@ public class ControlsFragment extends Fragment implements Animation.AnimationLis
         View v = inflater.inflate(R.layout.fragment_controls, container, false);
 
         fadeIn_anim = new AlphaAnimation(0, 1);
-        fadeIn_anim.setStartOffset(100);
+        fadeIn_anim.setStartOffset(80);
         fadeIn_anim.setInterpolator(new DecelerateInterpolator());
         fadeIn_anim.setAnimationListener(this);
         fadeIn_anim.setDuration(200);
@@ -57,10 +62,12 @@ public class ControlsFragment extends Fragment implements Animation.AnimationLis
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        ((TubActivity)getActivity()).replaceFragments(new EngineFragment(), Constants.ENGINE);
-                        controlButtons(true);
+                        if(checkIsConnected()) {
+                            ((TubActivity) getActivity()).replaceFragments(new EngineFragment(), Constants.ENGINE);
+                            controlButtons(true);
+                        }
                     }
-                },180);
+                },108);
             }
         });
         imgEngine.setVisibility(View.INVISIBLE);
@@ -73,10 +80,12 @@ public class ControlsFragment extends Fragment implements Animation.AnimationLis
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        ((TubActivity)getActivity()).replaceFragments(new ColorFragment(), Constants.COLOR);
-                        controlButtons(true);
+                        if(checkIsConnected()) {
+                            ((TubActivity) getActivity()).replaceFragments(new ColorFragment(), Constants.COLOR);
+                            controlButtons(true);
+                        }
                     }
-                },180);
+                },108);
             }
         });
         imgColor.setVisibility(View.INVISIBLE);
@@ -89,10 +98,12 @@ public class ControlsFragment extends Fragment implements Animation.AnimationLis
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        ((TubActivity)getActivity()).replaceFragments(new TemperatureFragment(), Constants.TEMPERATURE);
-                        controlButtons(true);
+                        if(checkIsConnected()) {
+                            ((TubActivity) getActivity()).replaceFragments(new TemperatureFragment(), Constants.TEMPERATURE);
+                            controlButtons(true);
+                        }
                     }
-                },180);
+                },108);
             }
         });
         imgTemp.setVisibility(View.INVISIBLE);
@@ -114,18 +125,36 @@ public class ControlsFragment extends Fragment implements Animation.AnimationLis
     @Override
     public void onDetach() {
         super.onDetach();
+        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(mMessageReceiver);
     }
+
+    private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // Get extra data included in the Intent
+            Boolean isConn = intent.getBooleanExtra("CONN", false);
+            if(!isConn) getActivity().finish();
+        }
+    };
+
 
     @Override
     public void onResume() {
         super.onResume();
         controlButtons(false);
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,
+                new IntentFilter("custom-event-name"));
         imgEngine.startAnimation(fadeIn_anim);
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    @Override
     public void onAnimationStart(Animation animation) {
-        if(animation.getDuration() == 120){
+        if(animation.getDuration() == 99){
             return;
         }
         anim_count++;
@@ -134,7 +163,7 @@ public class ControlsFragment extends Fragment implements Animation.AnimationLis
 
     @Override
     public void onAnimationEnd(Animation animation) {
-        if(animation.getDuration() == 120){
+        if(animation.getDuration() == 99){
             return;
         }
         if(anim_count == 1) {
@@ -153,6 +182,15 @@ public class ControlsFragment extends Fragment implements Animation.AnimationLis
             anim_count = 0;
             controlButtons(true);
         }
+    }
+
+    private boolean checkIsConnected() {
+        if(!BluetoothService.isConnected()){
+            Intent i = new Intent(getContext(), ConnectActivity.class);
+            startActivity(i);
+            return false;
+        }
+        return true;
     }
 
     @Override

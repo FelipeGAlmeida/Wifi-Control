@@ -40,6 +40,10 @@
     <string name="CELSIUS">°C</string>
 
     <!-- Wifi Control -->
+    <string name="BT_SETUP">Bluetooth Setup</string>
+    <string name="BT_SETUP_C">Bluetooth Setup</string>
+
+    <!-- Wifi Control -->
     <string name="NETWORK_SETUP">Network Setup</string>
     <string name="NETWORK_SETUP_C">Network Setup</string>
 
@@ -104,5 +108,8 @@
     <string name="CD_STEP">Indicates the current step of the page</string>
     <string name="CD_STATUS">Indicates the current status of the process</string>
     <string name="CD_LOGO">The logo of the platform</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

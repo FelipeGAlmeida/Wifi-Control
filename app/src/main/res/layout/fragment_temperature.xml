@@ -36,24 +36,28 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:fontFamily="casual"
             android:text="@string/SELECT_TEMPERTURE"
             android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/txtTemperature"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.507"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.100000024" />
 
         <ImageView
             android:id="@+id/imgTempBar"
-            android:layout_width="325dp"
+            android:layout_width="0dp"
             android:layout_height="29dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="80dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:contentDescription="@string/TEMPERTURE"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
@@ -61,7 +65,8 @@
             app:layout_constraintBottom_toTopOf="@+id/btnTempBack"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.444"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_tempShow" />
 
         <SeekBar
             android:id="@+id/skbTemperature"
@@ -95,23 +100,26 @@
             android:id="@+id/txtTemperature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:fontFamily="sans-serif"
             android:padding="24dp"
+            android:text="25"
             android:textColor="@android:color/black"
             android:textSize="120sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/imgTempBar"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.43"
+            app:layout_constraintHorizontal_bias="0.45"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtTempTitle" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.39" />
 
         <ImageView
             android:id="@+id/imgTempLogo"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:contentDescription="@string/TEMPERTURE"
@@ -120,8 +128,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.7"
             app:layout_constraintStart_toStartOf="@+id/img_tempShow"
-            app:layout_constraintTop_toBottomOf="@+id/txtTempTitle"
-            app:layout_constraintVertical_bias="0.050000012" />
+            app:layout_constraintTop_toTopOf="@+id/img_tempShow"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/txtUnity"

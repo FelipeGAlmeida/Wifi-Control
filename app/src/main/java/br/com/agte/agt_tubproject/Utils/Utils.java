@@ -8,8 +8,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+
 import br.com.agte.agt_tubproject.Activities.MainActivity;
 import br.com.agte.agt_tubproject.R;
+import br.com.agte.agt_tubproject.Service.BluetoothService;
 
 public class Utils {
 
@@ -34,5 +38,30 @@ public class Utils {
             actionBar.setDisplayHomeAsUpEnabled(!(activity instanceof MainActivity));
             actionBar.setHomeButtonEnabled(true);
         }
+    }
+
+    public static void sendDataOverBT(Activity activity, String type, byte data){
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        try {
+            switch (type){
+                case Constants.ENGINE: output.write(Commands.engine);
+                    break;
+                case Constants.COLOR_R: output.write(Commands.color_r);
+                    break;
+                case Constants.COLOR_G: output.write(Commands.color_g);
+                    break;
+                case Constants.COLOR_B: output.write(Commands.color_b);
+                    break;
+                case Constants.TEMPERATURE: output.write(Commands.temperature);
+                    break;
+            }
+            output.write(data);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+        byte[] out = output.toByteArray();
+
+        BluetoothService.self(activity).sendData(out);
     }
 }
