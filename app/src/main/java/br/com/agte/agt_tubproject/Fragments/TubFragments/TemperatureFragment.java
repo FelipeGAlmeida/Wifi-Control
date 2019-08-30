@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,9 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -27,9 +31,11 @@ public class TemperatureFragment extends Fragment implements SeekBar.OnSeekBarCh
     SeekBar skbTemp;
     TextView txt_temp;
 
+    List<Integer> commands;
+
     int temp_level = 25;
     boolean canSend = false;
-    Timer t_anim;
+    Timer t_anim, t_send;
 
     public TemperatureFragment() {
         // Required empty public constructor
@@ -75,7 +81,8 @@ public class TemperatureFragment extends Fragment implements SeekBar.OnSeekBarCh
     @Override
     public void onResume() {
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,
-                new IntentFilter("custom-event-name2"));
+                new IntentFilter(Constants.RECEIVED_DATA));
+        if(commands == null) commands = new ArrayList<>();
         super.onResume();
     }
 
@@ -100,9 +107,9 @@ public class TemperatureFragment extends Fragment implements SeekBar.OnSeekBarCh
     @Override
     public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
         temp_level = i + Constants.MIN_TEMP;
-        txt_temp.setText(Integer.toString(temp_level));
+        txt_temp.setText(String.format(Locale.getDefault(), "%d", temp_level));
         if(canSend)
-            Utils.sendDataOverBT(getActivity(), Constants.TEMPERATURE, (byte)temp_level);
+            startSendingData();
     }
 
     @Override
@@ -113,6 +120,31 @@ public class TemperatureFragment extends Fragment implements SeekBar.OnSeekBarCh
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
 
+    }
+
+    private void startSendingData(){
+        commands.add(temp_level);
+        if(t_send == null && canSend) {
+            t_send = new Timer();
+            t_send.scheduleAtFixedRate(new TimerTask() {
+                @Override
+                public void run() {
+                    if(commands.size() > 0) {
+                        while(commands.size() > 4) commands.remove(0);
+
+                        int t = commands.remove(0);
+                        if (canSend) {
+                            byte[] t_data = {(byte)t};
+                            Utils.sendDataOverBT(getActivity(), Constants.TEMPERATURE, t_data);
+                            if(commands.size() == 0){
+                                Log.v("TTTTTemp", Integer.toString(t));
+                                Utils.sendDataOverBT(getActivity(), Constants.TEMPERATURE, t_data);
+                            }
+                        }
+                    }
+                }
+            }, 0, 250);
+        }
     }
 
     private void animate(final int toProgess){
@@ -134,6 +166,6 @@ public class TemperatureFragment extends Fragment implements SeekBar.OnSeekBarCh
                     cancel();
                 }
             }
-        },0,95);
+        },0,55);
     }
 }

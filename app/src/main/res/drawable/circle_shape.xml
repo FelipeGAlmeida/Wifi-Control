@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="ring"
-    android:innerRadiusRatio="2.5"
-    android:thickness="3dp"
-    android:useLevel="false">
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background">
+        <shape
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:shape="ring"
+            android:innerRadiusRatio="2.55"
+            android:thickness="10dp"
+            android:useLevel="false">
 
-    <solid android:color="#CCC" />
+            <solid android:color="#CCC" />
+        </shape>
+    </item>
+    <item android:id="@android:id/widget_frame">
+        <shape
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:shape="ring"
+            android:innerRadiusRatio="2.5"
+            android:thickness="6dp"
+            android:useLevel="false">
 
-</shape>
+            <solid android:color="#555" />
+        </shape>
+    </item>
+</layer-list>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lightBlue"
+    android:background="@android:color/black"
     android:clickable="true"
     android:focusable="true"
     tools:context=".Fragments.TubFragments.EngineFragment">
@@ -14,7 +14,7 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/round_rect">
+        android:background="@drawable/round_rect_new">
 
         <ImageView
             android:id="@+id/imgLevels"
@@ -32,14 +32,13 @@
         <TextView
             android:id="@+id/txtEngineTitle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
-            android:fontFamily="casual"
             android:text="@string/SELECT_ENGINE_POWER"
             android:textAlignment="center"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/imgLevels"
@@ -53,10 +52,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:fontFamily="casual"
             android:text="@string/ENGINE_POWER_OFF"
             android:textAlignment="center"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/imgLevels"
@@ -71,10 +69,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:fontFamily="casual"
             android:text="@string/ENGINE_POWER_MED"
             android:textAlignment="center"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/txtEngineOff"
             app:layout_constraintEnd_toEndOf="@+id/txtEngineMax"
@@ -88,10 +85,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:fontFamily="casual"
             android:text="@string/ENGINE_POWER_MAX"
             android:textAlignment="center"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/txtEngineMed"
             app:layout_constraintStart_toEndOf="@+id/imgGearMax"
@@ -158,6 +154,7 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/round_rect_btn"
             android:text="@string/BACK"
+            android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

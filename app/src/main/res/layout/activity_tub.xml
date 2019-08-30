@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/fragment_tub_container"
-        android:name="br.com.agte.agt_tubproject.Fragments.TubFragments.ControlsFragment"
+        android:name="br.com.agte.agt_tubproject.Fragments.TubFragments.ControlsFragment_New"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import br.com.agte.agt_tubproject.Activities.MainActivity;
 import br.com.agte.agt_tubproject.R;
 
 public class AddControlFragment extends Fragment {
@@ -25,11 +26,20 @@ public class AddControlFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_add, container, false);
+        View v = inflater.inflate(R.layout.fragment_add_control, container, false);
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getContext(), R.string.CONTACT_ADD, Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+        ImageView back = v.findViewById(R.id.imgPrevAdd);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.getmViewPager().setCurrentItem(2);
             }
         });
 

@@ -1,10 +1,17 @@
 <resources>
-    <string name="app_name">Controle Wifi</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_name">Smart home</string>
+    <string name="action_settings">Configurações</string>
+
+    <!-- # GENERAL # -->
 
     <!-- Debug -->
     <string name="D_TAG">APP LOG</string>
     <string name="D_CONN">Conectando......</string>
+
+    <!-- Layout Images Content Description -->
+    <string name="CD_STEP">Indica o passo atual da tela</string>
+    <string name="CD_STATUS">Indica o estado atual do processo</string>
+    <string name="CD_LOGO">O logotipo da plataforma</string>
 
     <!-- Generics -->
     <string name="BACK">Voltar</string>
@@ -14,38 +21,18 @@
     <string name="TOAST_ERR_SMT_WRONG">Algo errado aconteceu, tente novamente mais tarde</string>
     <string name="TOAST_ERR_DETECT_NETWORK">Não foi possível detectar as redes disponíveis, tente novamente mais tarde</string>
 
-    <!-- Tub Control -->
-    <string name="TUB_CONTROL">Controle da Banheira</string>
-    <string name="TUB_CONTROL_C">Opções da Banheira</string>
+    <!-- Bluetooth Messages -->
+    <string name="DEVICE_CONN">Dispositivo conectado com sucesso!</string>
+    <string name="DEVICE_DISCONN">Dispositivo desconectado com sucesso!</string>
+    <string name="DEVICE_FAIL_CONN">Falha ao conectar-se com o dispositivo!</string>
+    <string name="DEVICE_ERR_DISCONN">Erro, o dispositivo se desconectou!</string>
+    <string name="NO_BT_ADAPTER">Nenhum adaptador Bluetooth encontrado!</string>
+    <string name="BT_OFF">O Bluetooth foi desligado!</string>
 
-    <!-- Controls -->
-    <string name="SELECT_TO_CONTROL">Selecione o que deseja controlar:</string>
-    <string name="ENGINE_POWER">Potência do motor</string>
-    <string name="CROMOTHERAPY">Cromoterapia</string>
-    <string name="TEMPERTURE">Temperatura</string>
+    <!-- # ACTIVITIES # -->
 
-    <!-- Engine -->
-    <string name="ENGINE">Motor</string>
-    <string name="SELECT_ENGINE_POWER">Selecione a potência do motor:</string>
-    <string name="ENGINE_POWER_MAX">Máxima\n(Hidromassagem)</string>
-    <string name="ENGINE_POWER_MED">Média\n(Circulação)</string>
-    <string name="ENGINE_POWER_OFF">Desligado</string>
-
-    <!-- Color -->
-    <string name="COLOR">Cores</string>
-    <string name="SELECT_LIGHT_COLOR">Selecione a cor da luz da banheira:</string>
-
-    <!--Temperatura-->
-    <string name="SELECT_TEMPERTURE">Selecione a temperatura da banheira:</string>
-    <string name="CELSIUS">°C</string>
-
-    <!-- Wifi Control -->
-    <string name="NETWORK_SETUP">Configurações de Rede</string>
-    <string name="NETWORK_SETUP_C">Config. de Rede</string>
-
-    <!-- Wifi Control -->
-    <string name="BT_SETUP">Configurações de Bluetooth</string>
-    <string name="BT_SETUP_C">Config. de Bluetooth</string>
+    <!-- Connect Activity -->
+    <string name="NO_DEVICE_CONN">Nenhum dispositivo conectado!</string>
 
     <!-- Wifi Activity -->
     <string name="BOX_PERMISSION_TITLE">Permita ao aplicativo acessar sua localização.</string>
@@ -55,6 +42,64 @@
 
     <string name="PERMISSION_GRANTED_RESP">Não se esqueça de ligar sua localização, sem ela, a permissão concedida não irá funcionar</string>
     <string name="PERMISSION_DENY_RESP">Caso não queira a facilidade, toque em pular quando perguntado</string>
+
+    <!-- # FRAGMENTS # -->
+
+    <!-- @ AddFragments @ -->
+
+    <!-- Add Control -->
+    <string name="ADD_DEVICE">Adicionar novo dispositivo</string>
+    <string name="CONTACT_ADD">Contate o desenvolvedor para adicionar novos dispositivos!</string>
+
+    <!-- @ BtFragments @ -->
+
+    <!-- BT Control -->
+    <string name="BT_SETUP">Conectar via Bluetooth</string>
+    <string name="BT_SETUP_C">Bluetooth</string>
+
+    <!-- ConnectFragment ~ Class -->
+    <string name="CONNECTING">Conectando…</string>
+
+    <!-- ConnectFragment ~ Layout -->
+    <string name="CONNECT">Conectar</string>
+    <string name="DISCONNECT">Desconectar</string>
+
+    <!-- @ TubFragments @ -->
+
+    <!-- TubControlFragment -->
+    <string name="TUB_CONTROL">Controle da Banheira</string>
+    <string name="TUB_CONTROL_C">Opções da Banheira</string>
+
+    <!-- ControlsFragment -->
+    <string name="SELECT_TO_CONTROL">Selecione alguma opção para controlar:</string>
+    <string name="ENGINE_POWER">Potência do motor</string>
+    <string name="CROMOTHERAPY">Cromoterapia</string>
+    <string name="TEMPERTURE">Temperatura</string>
+
+    <!-- EngineFragment -->
+    <string name="ENGINE">Motor</string>
+    <string name="SELECT_ENGINE_POWER">Selecione a potência do motor:</string>
+    <string name="ENGINE_POWER_MAX">Máxima\n(Hidromassagem)</string>
+    <string name="ENGINE_POWER_MED">Média\n(Circulação)</string>
+    <string name="ENGINE_POWER_OFF">Desligado</string>
+
+    <!-- TubLedFragment -->
+    <string name="SELECT_SPOT">Selecione um item para alterar sua cor:</string>
+    <string name="ADD_SPOT">Adicionar Spot</string>
+
+    <!-- ColorFragment -->
+    <string name="COLOR">Cores</string>
+    <string name="SELECT_LIGHT_COLOR">Selecione a cor para %1$s:</string>
+
+    <!-- TemperatureFragment -->
+    <string name="SELECT_TEMPERTURE">Selecione a temperatura da banheira:</string>
+    <string name="CELSIUS">°C</string>
+
+    <!-- @ WifiFragments @ -->
+
+    <!-- Wifi Control -->
+    <string name="NETWORK_SETUP">Configurações de Rede</string>
+    <string name="NETWORK_SETUP_C">Config. de Rede</string>
 
     <!-- InitialFragment ~ Class -->
     <string name="DIALOG_PERMISSION_TITLE">Permissão de localização requerida</string>
@@ -100,13 +145,13 @@
     <string name="FINAL_TEXT">Aplicando nova rede, aguarde....</string>
     <string name="FINAL_SUBTEXT">Está operação pode levar até 1 minuto</string>
 
-    <!-- Add Control -->
-    <string name="ADD_DEVICE">Adicionar novo dispositivo</string>
-    <string name="CONTACT_ADD">Contate o desenvolvedor para adicionar novos dispositivos!</string>
+    <!-- @ Controllers @ -->
 
-    <!-- Layout Images Content Description -->
-    <string name="CD_STEP">Indica o passo atual da tela</string>
-    <string name="CD_STATUS">Indica o estado atual do processo</string>
-    <string name="CD_LOGO">O logotipo da plataforma</string>
+    <!-- SpotListAdapter ~ Class -->
+    <string name="SPOT">Spot %1$d</string>
+    <string name="SPOT_ALL">Todos Spots</string>
+    <string name="SPOT_STRIP">Fita de Led\'s</string>
+    <string name="TOAST_WARN_DEL">Você deve excluir o último spot primeiro!</string>
+    <string name="TOAST_NO_DEL">Você não pode excluir este item!</string>
 
 </resources>

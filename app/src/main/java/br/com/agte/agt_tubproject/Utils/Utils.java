@@ -3,6 +3,7 @@ package br.com.agte.agt_tubproject.Utils;
 import android.app.Activity;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
@@ -40,22 +41,38 @@ public class Utils {
         }
     }
 
-    public static void sendDataOverBT(Activity activity, String type, byte data){
+    public static void sendDataOverBT(Activity activity, String type, byte[] data){
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         try {
-            switch (type){
-                case Constants.ENGINE: output.write(Commands.engine);
+            switch (type) {
+                case Constants.ENGINE:
+                    output.write(Commands.engine);
                     break;
-                case Constants.COLOR_R: output.write(Commands.color_r);
+                case Constants.COLOR_R:
+                    output.write(Commands.color_r);
                     break;
-                case Constants.COLOR_G: output.write(Commands.color_g);
+                case Constants.COLOR_G:
+                    output.write(Commands.color_g);
                     break;
-                case Constants.COLOR_B: output.write(Commands.color_b);
+                case Constants.COLOR_B:
+                    output.write(Commands.color_b);
                     break;
-                case Constants.TEMPERATURE: output.write(Commands.temperature);
+                case Constants.TEMPERATURE:
+                    output.write(Commands.temperature);
+                    break;
+                case Constants.COLOR:
+                    output.write(Commands.color);
+                    break;
+                case Constants.STRIP:
+                    output.write(Commands.strip);
+                    break;
+                case Constants.LED_ALL:
+                    output.write(Commands.color_all);
                     break;
             }
+
             output.write(data);
+
         }catch (IOException e){
             e.printStackTrace();
         }

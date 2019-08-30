@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +48,7 @@ public class InitialFragment extends Fragment {
 
     private void showDialog(){
         //Cria o gerador do AlertDialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(getContext(), R.style.AlertDialogCustom));
 
         builder.setTitle(getResources().getString(R.string.DIALOG_PERMISSION_TITLE));
         builder.setMessage(getResources().getString(R.string.DIALOG_PERMISSION_TEXT));

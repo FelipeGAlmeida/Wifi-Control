@@ -19,14 +19,10 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import br.com.agte.agt_tubproject.R;
-import br.com.agte.agt_tubproject.Service.BluetoothService;
-import br.com.agte.agt_tubproject.Utils.Commands;
 import br.com.agte.agt_tubproject.Utils.Constants;
 import br.com.agte.agt_tubproject.Utils.SaveConfigs;
 import br.com.agte.agt_tubproject.Utils.Utils;
@@ -78,7 +74,7 @@ public class EngineFragment extends Fragment implements SeekBar.OnSeekBarChangeL
         imgGear_med = v.findViewById(R.id.imgGearMed);
 
         rot_max_anim = AnimationUtils.loadAnimation(getContext(), R.anim.rot_anim);
-        rot_max_anim.setDuration(800);
+        rot_max_anim.setDuration(650);
         imgGear_max = v.findViewById(R.id.imgGearMax);
 
         imgLevels = v.findViewById(R.id.imgLevels);
@@ -117,7 +113,7 @@ public class EngineFragment extends Fragment implements SeekBar.OnSeekBarChangeL
     @Override
     public void onResume() {
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,
-                new IntentFilter("custom-event-name2"));
+                new IntentFilter(Constants.RECEIVED_DATA));
         super.onResume();
     }
 
@@ -141,9 +137,9 @@ public class EngineFragment extends Fragment implements SeekBar.OnSeekBarChangeL
     }
 
     private void setSelectedTextView(int selectedTextView){
-        txtMax.setTextColor(Color.BLACK);
-        txtMed.setTextColor(Color.BLACK);
-        txtOff.setTextColor(Color.BLACK);
+        txtMax.setTextColor(Color.WHITE);
+        txtMed.setTextColor(Color.WHITE);
+        txtOff.setTextColor(Color.WHITE);
         color = MIN_COLOR; falling = false;
         switch (selectedTextView){
             case 0:
@@ -185,7 +181,8 @@ public class EngineFragment extends Fragment implements SeekBar.OnSeekBarChangeL
                 imgGear_max.startAnimation(rot_max_anim);
                 break;
         }
-        Utils.sendDataOverBT(getActivity(), Constants.ENGINE, (byte)engine_level);
+        byte[] engine_data = {(byte)engine_level};
+        Utils.sendDataOverBT(getActivity(), Constants.ENGINE, engine_data);
     }
 
     @Override
@@ -203,28 +200,29 @@ public class EngineFragment extends Fragment implements SeekBar.OnSeekBarChangeL
         t_anim.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if(color <MAX_COLOR && !falling){
-                            color++;
-                            falling = color == MAX_COLOR;
-                        }
-                        else if(color >MIN_COLOR && falling){
-                            color--;
-                            falling = !(color == MIN_COLOR);
-                        }
-                        switch (engine_level){
-                            case 2: txtMax.setTextColor(Color.rgb(color,0,0));
-                                break;
-                            case 1: txtMed.setTextColor(Color.rgb(color, color, 0));
-                                break;
-                            case 0: txtOff.setTextColor(Color.rgb(color -OFF_COLOR, color -OFF_COLOR, color -OFF_COLOR));
-                                break;
-                        }
+                if(getActivity() != null)
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if(color <MAX_COLOR && !falling){
+                                color++;
+                                falling = color == MAX_COLOR;
+                            }
+                            else if(color >MIN_COLOR && falling){
+                                color--;
+                                falling = !(color == MIN_COLOR);
+                            }
+                            switch (engine_level){
+                                case 2: txtMax.setTextColor(Color.rgb(color,0,0));
+                                    break;
+                                case 1: txtMed.setTextColor(Color.rgb(color, color, 0));
+                                    break;
+                                case 0: txtOff.setTextColor(Color.rgb(color -OFF_COLOR, color -OFF_COLOR, color -OFF_COLOR));
+                                    break;
+                            }
 
-                    }
-                });
+                        }
+                    });
             }
         }, 0, 5);
     }

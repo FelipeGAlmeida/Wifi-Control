@@ -63,7 +63,7 @@ public class ControlsFragment extends Fragment implements Animation.AnimationLis
                     @Override
                     public void run() {
                         if(checkIsConnected()) {
-                            ((TubActivity) getActivity()).replaceFragments(new EngineFragment(), Constants.ENGINE);
+                            ((TubActivity) getActivity()).replaceFragments(new EngineFragment(), Constants.ENGINE, null);
                             controlButtons(true);
                         }
                     }
@@ -81,7 +81,7 @@ public class ControlsFragment extends Fragment implements Animation.AnimationLis
                     @Override
                     public void run() {
                         if(checkIsConnected()) {
-                            ((TubActivity) getActivity()).replaceFragments(new ColorFragment(), Constants.COLOR);
+                            ((TubActivity) getActivity()).replaceFragments(new ColorFragment(), Constants.COLOR, null);
                             controlButtons(true);
                         }
                     }
@@ -99,7 +99,7 @@ public class ControlsFragment extends Fragment implements Animation.AnimationLis
                     @Override
                     public void run() {
                         if(checkIsConnected()) {
-                            ((TubActivity) getActivity()).replaceFragments(new TemperatureFragment(), Constants.TEMPERATURE);
+                            ((TubActivity) getActivity()).replaceFragments(new TemperatureFragment(), Constants.TEMPERATURE, null);
                             controlButtons(true);
                         }
                     }
@@ -132,7 +132,7 @@ public class ControlsFragment extends Fragment implements Animation.AnimationLis
         @Override
         public void onReceive(Context context, Intent intent) {
             // Get extra data included in the Intent
-            Boolean isConn = intent.getBooleanExtra("CONN", false);
+            Boolean isConn = intent.getBooleanExtra(Constants.CONN_STATUS, false);
             if(!isConn) getActivity().finish();
         }
     };
@@ -143,7 +143,7 @@ public class ControlsFragment extends Fragment implements Animation.AnimationLis
         super.onResume();
         controlButtons(false);
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,
-                new IntentFilter("custom-event-name"));
+                new IntentFilter(Constants.ADAPTER_STATUS));
         imgEngine.startAnimation(fadeIn_anim);
     }
 

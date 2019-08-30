@@ -4,19 +4,24 @@ import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Set;
 
+import br.com.agte.agt_tubproject.R;
 import br.com.agte.agt_tubproject.Utils.Commands;
 import br.com.agte.agt_tubproject.Utils.Constants;
+import br.com.agte.agt_tubproject.Utils.SaveConfigs;
 
 public class BluetoothService {
-
-    private static int BT_REQ_CODE = 123;
 
     private static boolean connected;
 
@@ -33,6 +38,9 @@ public class BluetoothService {
     private BluetoothService(){
         mBtAdapter = BluetoothAdapter.getDefaultAdapter();
 
+        mActivity.getApplicationContext().registerReceiver(mAdapterReceiver,
+                new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED));
+
         self = this;
     }
 
@@ -45,29 +53,33 @@ public class BluetoothService {
     // Connection management
     public void connectToDevice(String bt_name){
         device_name = bt_name == null ? device_name : bt_name;
-        setPairedDevices();
-        BluetoothDevice device = null;
-        for (BluetoothDevice d : pairedDevices) {
-            if(d.getName().contains(device_name))
-                device = d;
-        }
-        if(device != null) {
-            ct = new ConnectThread(device);
-            ct.start();
+        if(device_name != null) {
+            checkPairedDevices();
+            BluetoothDevice device = null;
+            for (BluetoothDevice d : pairedDevices) {
+                if (d.getName().contains(device_name))
+                    device = d;
+            }
+            if (device != null) {
+                ct = new ConnectThread(device);
+                ct.start();
+            } else {
+                if (enableBluetoothAdapter())
+                    disconnectFromDevice(null);
+            }
         }else{
-            if(enableBluetoothAdapter())
-                disconnectFromDevice();
+            broadcastAdapterState(BluetoothAdapter.STATE_ON);
         }
     }
 
-    public void disconnectFromDevice(){
+    public void disconnectFromDevice(String message){
         if(connected) {
             if (ct != null) {
                 ct.cancel();
                 ct.interrupt();
             }
             ct = null;
-            setConnected(false);
+            setConnected(false, message);
         }
     }
 
@@ -75,17 +87,23 @@ public class BluetoothService {
         return connected;
     }
 
-    private void setConnected(boolean conn){
+    private void setConnected(boolean conn, String message){
         connected = conn;
-        Intent intent = new Intent("custom-event-name");
-        intent.putExtra("CONN", connected);
+        Intent intent = new Intent(Constants.ADAPTER_STATUS);
+        intent.putExtra(Constants.CONN_STATUS, connected);
+        intent.putExtra(Constants.CONN_MSG, message);
         LocalBroadcastManager.getInstance(mActivity).sendBroadcast(intent);
     }
 
     // Get Bluetooth known devices
-    private void setPairedDevices(){
+    public ArrayList checkPairedDevices(){
         // Get a set of currently paired devices and append to 'pairedDevices'
         pairedDevices = mBtAdapter.getBondedDevices();
+        ArrayList<String> deviceNames = new ArrayList<>();
+        for(BluetoothDevice device : pairedDevices){
+            deviceNames.add(device.getName());
+        }
+        return deviceNames;
     }
 
     // Bluetooth Communication
@@ -99,11 +117,11 @@ public class BluetoothService {
     }
 
     // Enable Bluetooth
-    private boolean enableBluetoothAdapter() {
+    public boolean enableBluetoothAdapter() {
         // Check device has Bluetooth and that it is turned on
         mBtAdapter = BluetoothAdapter.getDefaultAdapter();
         if(mBtAdapter == null) {
-            Toast.makeText(mActivity, "Device does not support Bluetooth", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mActivity, mActivity.getResources().getString(R.string.NO_BT_ADAPTER), Toast.LENGTH_SHORT).show();
             return false;
         } else {
             if (mBtAdapter.isEnabled()) {
@@ -111,10 +129,37 @@ public class BluetoothService {
             } else {
                 //Prompt user to turn on Bluetooth
                 Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                mActivity.startActivityForResult(enableBtIntent, BT_REQ_CODE);
+                mActivity.startActivityForResult(enableBtIntent, Constants.ENABLE_BLUETOOTH_REQUEST);
                 return false;
             }
         }
+    }
+
+    private final BroadcastReceiver mAdapterReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            final String action = intent.getAction();
+            if (action.equals(BluetoothAdapter.ACTION_STATE_CHANGED)) {
+                final int state = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE,
+                        BluetoothAdapter.ERROR);
+                switch (state) {
+                    case BluetoothAdapter.STATE_OFF:
+                        disconnectFromDevice(null);
+                        broadcastAdapterState(BluetoothAdapter.STATE_OFF);
+                        break;
+                    case BluetoothAdapter.STATE_ON:
+                        broadcastAdapterState(BluetoothAdapter.STATE_ON);
+                        break;
+                }
+            }
+        }
+    };
+
+    /** Broadcast Adpater State **/
+    private void broadcastAdapterState(int state){
+        Intent i = new Intent(Constants.ADAPTER_STATUS);
+        i.putExtra(Constants.BT_STATUS, state);
+        LocalBroadcastManager.getInstance(mActivity).sendBroadcast(i);
     }
 
     // Connected thread
@@ -152,40 +197,76 @@ public class BluetoothService {
                 // Unable to connect; close the socket and get out
                 try {
                     mmSocket.close();
-                    disconnectFromDevice();
+                    disconnectFromDevice(mActivity.getResources().getString(R.string.DEVICE_FAIL_CONN));
                 } catch (IOException closeException) {
                     closeException.printStackTrace();
                 }
                 return;
             }
-            setConnected(true);
+            setConnected(true, mActivity.getResources().getString(R.string.DEVICE_CONN));
 
+            int state = 0;
             while(!end){
                 try {
-                    byte[] buffer = new byte[2];
+                    byte[] buffer = new byte[1];
                     int length = mmSocket.getInputStream().read(buffer);
-                    String text = new String(buffer, 0, length);
-                    if(buffer[0] == Commands.color_r[0]){
-                        broadcastData(Constants.COLOR_R, buffer[1]);
-                    }
-                    if(buffer[0] == Commands.color_g[0]){
-                        broadcastData(Constants.COLOR_G, buffer[1]);
-                    }
-                    if(buffer[0] == Commands.color_b[0]){
-                        broadcastData(Constants.COLOR_B, buffer[1]);
-                    }
-                    if(buffer[0] == Commands.engine[0]){
-                        broadcastData(Constants.ENGINE, buffer[1]);
-                    }
-                    if(buffer[0] == Commands.temperature[0]){
-                        broadcastData(Constants.TEMPERATURE, buffer[1]);
+                    if(length > 0) {
+                        switch (state) {
+                            case 0:
+                                if (buffer[0] == Commands.color_r[0]) {
+                                    state = 1;
+                                }
+                                if (buffer[0] == Commands.color_g[0]) {
+                                    state = 2;
+                                }
+                                if (buffer[0] == Commands.color_b[0]) {
+                                    state = 3;
+                                }
+                                if (buffer[0] == Commands.engine[0]) {
+                                    state = 4;
+                                }
+                                if (buffer[0] == Commands.temperature[0]) {
+                                    state = 5;
+                                }
+                                break;
+                            case 1:
+                                broadcastData(Constants.COLOR_R, buffer[0] & 0xFF);
+                                Log.v("RRRRRR", Integer.toHexString(buffer[0] & 0xFF));
+                                SaveConfigs.getInstance(mActivity).saveSpecificColor(Constants.COLOR_R, buffer[0]);
+                                state = 0;
+                                break;
+                            case 2:
+                                broadcastData(Constants.COLOR_G, buffer[0] & 0xFF);
+                                Log.v("GGGGGG", Integer.toHexString(buffer[0] & 0xFF));
+                                SaveConfigs.getInstance(mActivity).saveSpecificColor(Constants.COLOR_G, buffer[0]);
+                                state = 0;
+                                break;
+                            case 3:
+                                broadcastData(Constants.COLOR_B, buffer[0] & 0xFF);
+                                Log.v("BBBBBB", Integer.toHexString(buffer[0] & 0xFF));
+                                SaveConfigs.getInstance(mActivity).saveSpecificColor(Constants.COLOR_B, buffer[0]);
+                                state = 0;
+                                break;
+                            case 4:
+                                broadcastData(Constants.ENGINE, buffer[0]);
+                                Log.v("MMMMM", Integer.toHexString(buffer[0]));
+                                SaveConfigs.getInstance(mActivity).saveEnginePrefs(buffer[0]);
+                                state = 0;
+                                break;
+                            case 5:
+                                broadcastData(Constants.TEMPERATURE, buffer[0]);
+                                Log.v("TTTTTT", Integer.toHexString(buffer[0]));
+                                SaveConfigs.getInstance(mActivity).saveTemperaturePrefs(buffer[0]);
+                                state = 0;
+                                break;
+                        }
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
-                    disconnectFromDevice();
+                    disconnectFromDevice(mActivity.getResources().getString(R.string.DEVICE_ERR_DISCONN));
                 }
                 try {
-                    Thread.sleep(250);
+                    Thread.sleep(45);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -193,8 +274,8 @@ public class BluetoothService {
         }
 
         /** Broadcast received data **/
-        public void broadcastData(String type, int value){
-            Intent intent = new Intent("custom-event-name2");
+        void broadcastData(String type, int value){
+            Intent intent = new Intent(Constants.RECEIVED_DATA);
             intent.putExtra(type, value);
             LocalBroadcastManager.getInstance(mActivity).sendBroadcast(intent);
         }
@@ -207,7 +288,7 @@ public class BluetoothService {
         }
 
         /** Will cancel an in-progress connection, and close the socket */
-        public void cancel() {
+        void cancel() {
             try {
                 mmSocket.close();
             } catch (IOException e) {

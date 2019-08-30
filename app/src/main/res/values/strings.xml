@@ -1,10 +1,17 @@
 <resources>
-    <string name="app_name">Wifi Control</string>
+    <string name="app_name">Smart home</string>
     <string name="action_settings">Settings</string>
+
+    <!-- # GENERAL # -->
 
     <!-- Debug -->
     <string name="D_TAG">APP LOG</string>
     <string name="D_CONN">Connecting......</string>
+
+    <!-- Layout Images Content Description -->
+    <string name="CD_STEP">Indicates the current step of the page</string>
+    <string name="CD_STATUS">Indicates the current status of the process</string>
+    <string name="CD_LOGO">The logo of the platform</string>
 
     <!-- Generics -->
     <string name="BACK">Go back</string>
@@ -14,38 +21,18 @@
     <string name="TOAST_ERR_SMT_WRONG">Something wrong happens, try again later</string>
     <string name="TOAST_ERR_DETECT_NETWORK">Can\'t detect the available networks, try again later</string>
 
-    <!-- Tub Control -->
-    <string name="TUB_CONTROL">Bathtub Control</string>
-    <string name="TUB_CONTROL_C">Bathtub Control</string>
+    <!-- Bluetooth Messages -->
+    <string name="DEVICE_CONN">Device successfully connected!</string>
+    <string name="DEVICE_DISCONN">Device successfully disconnected!</string>
+    <string name="DEVICE_FAIL_CONN">Fail connecting to device!</string>
+    <string name="DEVICE_ERR_DISCONN">Error, the device was disconnected!</string>
+    <string name="NO_BT_ADAPTER">No Bluetooth adapter found!</string>
+    <string name="BT_OFF">The Bluetooth was disabled!</string>
 
-    <!-- Controls -->
-    <string name="SELECT_TO_CONTROL">Select what you want to control:</string>
-    <string name="ENGINE_POWER">Engine power</string>
-    <string name="CROMOTHERAPY">Cromotherapy</string>
-    <string name="TEMPERTURE">Temperture</string>
+    <!-- # ACTIVITIES # -->
 
-    <!-- Engine -->
-    <string name="ENGINE">Engine</string>
-    <string name="SELECT_ENGINE_POWER">Select the engine power:</string>
-    <string name="ENGINE_POWER_MAX">Maximum\n(Whirlpool)</string>
-    <string name="ENGINE_POWER_MED">Medium\n(Circulation)</string>
-    <string name="ENGINE_POWER_OFF">Off</string>
-
-    <!-- Color -->
-    <string name="COLOR">Colors</string>
-    <string name="SELECT_LIGHT_COLOR">Select the color of the tub lights:</string>
-
-    <!--Temperatura-->
-    <string name="SELECT_TEMPERTURE">Select the temperture of the tub:</string>
-    <string name="CELSIUS">°C</string>
-
-    <!-- Wifi Control -->
-    <string name="BT_SETUP">Bluetooth Setup</string>
-    <string name="BT_SETUP_C">Bluetooth Setup</string>
-
-    <!-- Wifi Control -->
-    <string name="NETWORK_SETUP">Network Setup</string>
-    <string name="NETWORK_SETUP_C">Network Setup</string>
+    <!-- Connect Activity -->
+    <string name="NO_DEVICE_CONN">No device connected!</string>
 
     <!-- Wifi Activity -->
     <string name="BOX_PERMISSION_TITLE">Let the app access your location.</string>
@@ -55,6 +42,64 @@
 
     <string name="PERMISSION_GRANTED_RESP">Don\'t forget to turn on the location, without it, the given permission will not work</string>
     <string name="PERMISSION_DENY_RESP">If you don\'t want help, choose to skip when prompt</string>
+
+    <!-- # FRAGMENTS # -->
+
+    <!-- @ AddFragments @ -->
+
+    <!-- Add Control -->
+    <string name="ADD_DEVICE">Add new device</string>
+    <string name="CONTACT_ADD">Contact the developer to add new devices!</string>
+
+    <!-- @ BtFragments @ -->
+
+    <!-- BTControl -->
+    <string name="BT_SETUP">Connect over Bluetooth</string>
+    <string name="BT_SETUP_C">Bluetooth</string>
+
+    <!-- ConnectFragment ~ Class -->
+    <string name="CONNECTING">Connecting…</string>
+
+    <!-- ConnectFragment ~ Layout -->
+    <string name="CONNECT">Connect</string>
+    <string name="DISCONNECT">Disconnect</string>
+
+    <!-- @ TubFragments @ -->
+
+    <!-- TubControlFragment -->
+    <string name="TUB_CONTROL">Bathtub Control</string>
+    <string name="TUB_CONTROL_C">Bathtub Control</string>
+
+    <!-- ControlsFragment -->
+    <string name="SELECT_TO_CONTROL">Select some option to control:</string>
+    <string name="ENGINE_POWER">Engine power</string>
+    <string name="CROMOTHERAPY">Cromotherapy</string>
+    <string name="TEMPERTURE">Temperture</string>
+
+    <!-- EngineFragment -->
+    <string name="ENGINE">Engine</string>
+    <string name="SELECT_ENGINE_POWER">Select the engine power:</string>
+    <string name="ENGINE_POWER_MAX">Maximum\n(Whirlpool)</string>
+    <string name="ENGINE_POWER_MED">Medium\n(Circulation)</string>
+    <string name="ENGINE_POWER_OFF">Off</string>
+
+    <!-- TubLedFragment -->
+    <string name="SELECT_SPOT">Select an item to change its color:</string>
+    <string name="ADD_SPOT">Add spot</string>
+
+    <!-- ColorFragment -->
+    <string name="COLOR">Colors</string>
+    <string name="SELECT_LIGHT_COLOR">Select the color for %1$s:</string>
+
+    <!-- TemperatureFragment -->
+    <string name="SELECT_TEMPERTURE">Select the temperture of the tub:</string>
+    <string name="CELSIUS">°C</string>
+
+    <!-- @ WifiFragments @ -->
+
+    <!-- WifiControl -->
+    <string name="NETWORK_SETUP">Network Setup</string>
+    <string name="NETWORK_SETUP_C">Network Setup</string>
 
     <!-- InitialFragment ~ Class -->
     <string name="DIALOG_PERMISSION_TITLE">Location permission required</string>
@@ -100,16 +145,13 @@
     <string name="FINAL_TEXT">Applying new network....</string>
     <string name="FINAL_SUBTEXT">This opperation may last 1 minute</string>
 
-    <!-- Add Control -->
-    <string name="ADD_DEVICE">Add new device</string>
-    <string name="CONTACT_ADD">Contact the developer to add new devices!</string>
+    <!-- @ Controllers @ -->
 
-    <!-- Layout Images Content Description -->
-    <string name="CD_STEP">Indicates the current step of the page</string>
-    <string name="CD_STATUS">Indicates the current status of the process</string>
-    <string name="CD_LOGO">The logo of the platform</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- SpotListAdapter ~ Class -->
+    <string name="SPOT">Spot %1$d</string>
+    <string name="SPOT_ALL">All Spots</string>
+    <string name="SPOT_STRIP">Led Strip</string>
+    <string name="TOAST_WARN_DEL">You must remove the last spot first!</string>
+    <string name="TOAST_NO_DEL">You can not remove this item!</string>
 
 </resources>

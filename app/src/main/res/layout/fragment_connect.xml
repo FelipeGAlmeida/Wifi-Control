@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lightBlue"
+    android:background="@android:color/black"
     tools:context=".Fragments.BtFragments.ConnectFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -12,20 +12,21 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/round_rect">
+        android:background="@drawable/round_rect_new">
 
         <Button
             android:id="@+id/btnConnectBT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
             android:background="@drawable/round_rect_btn"
             android:paddingLeft="25dp"
             android:paddingRight="25dp"
             android:text="Conectar"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spn_disps" />
 
         <Button
             android:id="@+id/btnPairBT"
@@ -45,10 +46,9 @@
             android:id="@+id/textView7"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
             android:text="Antes de iniciar uma conexão é necessário que seu telefone conheça o dispositivo. Para isso, toque no botão abaixo para parear o dispositivo desejado."
+            android:textColor="@android:color/white"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -59,10 +59,9 @@
             android:id="@+id/textView8"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginTop="24dp"
             android:text="Uma vez que o telefone já conheça o dispositivo, ou seja, o mesmo já se encontre pareado, é possível iniciar uma conexão para controla-lo. Escolha o que deseja controlar e então toque abaixo para conectar-se."
+            android:textColor="@android:color/white"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -72,15 +71,14 @@
         <Spinner
             android:id="@+id/spn_disps"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/round_rect_btn"
             android:popupBackground="@drawable/round_rect_btn"
-            app:layout_constraintBottom_toBottomOf="@+id/btnConnectBT"
-            app:layout_constraintEnd_toStartOf="@+id/btnConnectBT"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/btnConnectBT" />
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>

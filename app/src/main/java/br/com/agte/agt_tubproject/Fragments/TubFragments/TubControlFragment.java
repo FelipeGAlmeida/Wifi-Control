@@ -11,6 +11,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import br.com.agte.agt_tubproject.Activities.MainActivity;
 import br.com.agte.agt_tubproject.Activities.TubActivity;
 import br.com.agte.agt_tubproject.R;
 
@@ -32,6 +33,14 @@ public class TubControlFragment extends Fragment {
             public void onClick(View view) {
                 Intent i = new Intent(getActivity(), TubActivity.class);
                 startActivity(i);
+            }
+        });
+
+        ImageView next = v.findViewById(R.id.imgNextTub);
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.getmViewPager().setCurrentItem(1);
             }
         });
 

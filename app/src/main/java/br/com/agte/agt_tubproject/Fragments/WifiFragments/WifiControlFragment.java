@@ -11,6 +11,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import br.com.agte.agt_tubproject.Activities.MainActivity;
 import br.com.agte.agt_tubproject.Activities.WifiActivity;
 import br.com.agte.agt_tubproject.R;
 
@@ -32,6 +33,22 @@ public class WifiControlFragment extends Fragment {
             public void onClick(View view) {
                 Intent i = new Intent(getActivity(), WifiActivity.class);
                 startActivity(i);
+            }
+        });
+
+        ImageView next = v.findViewById(R.id.imgNextWF);
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.getmViewPager().setCurrentItem(3);
+            }
+        });
+
+        ImageView back = v.findViewById(R.id.imgPrevWF);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.getmViewPager().setCurrentItem(1);
             }
         });
 

@@ -61,6 +61,7 @@ public class PostService {
         MyRequestQueue.add(MyStringRequest);
     }
 
+    // Communication over Wi-Fi was cancelled due to project priorities
     public void postTubValues(final Context context, final int engine_level, final String colors_level, final int temp_level, final FinalFragment finalFragment) {
         RequestQueue MyRequestQueue = Volley.newRequestQueue(context);
         StringRequest MyStringRequest = new StringRequest(Request.Method.POST, Constants.ESP_SERVER_POST_URL, new Response.Listener<String>() {

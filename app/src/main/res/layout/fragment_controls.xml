@@ -28,7 +28,7 @@
             app:layout_constraintBottom_toTopOf="@+id/imgColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/txtHeader"
             app:srcCompat="@drawable/motor" />
 
         <ImageView
@@ -66,7 +66,7 @@
             app:srcCompat="@drawable/temp" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/txtHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

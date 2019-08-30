@@ -11,6 +11,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.ContextThemeWrapper;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -54,7 +55,7 @@ public class WifiActivity extends AppCompatActivity {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.ACCESS_FINE_LOCATION)) {
 
-                new AlertDialog.Builder(this)
+                new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AlertDialogCustom))
                         .setTitle(getResources().getString(R.string.BOX_PERMISSION_TITLE))
                         .setMessage(getResources().getString(R.string.BOX_PERMISSION_TEXT))
                         .setPositiveButton(getResources().getString(R.string.OK), new DialogInterface.OnClickListener() {
