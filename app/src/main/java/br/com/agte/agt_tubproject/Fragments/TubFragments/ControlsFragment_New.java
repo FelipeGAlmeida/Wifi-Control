@@ -57,19 +57,19 @@ public class ControlsFragment_New extends Fragment {
         pgbColor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(checkIsConnected()) {
+                //if(checkIsConnected()) {
                     ((TubActivity) getActivity()).replaceFragments(new TubLedFragment(), Constants.LED, null);
                 //    ((TubActivity) getActivity()).replaceFragments(new ColorFragment(), Constants.COLOR);
-                }
+                //}
             }
         });
         pgbTemp = v.findViewById(R.id.pgbTemperature);
         pgbTemp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(checkIsConnected()) {
+                //if(checkIsConnected()) {
                     ((TubActivity) getActivity()).replaceFragments(new TemperatureFragment(), Constants.TEMPERATURE, null);
-                }
+                //}
             }
         });
         txtEngine = v.findViewById(R.id.txtEngineStatus);

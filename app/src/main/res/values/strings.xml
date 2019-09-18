@@ -74,7 +74,7 @@
     <string name="SELECT_TO_CONTROL">Select some option to control:</string>
     <string name="ENGINE_POWER">Engine power</string>
     <string name="CROMOTHERAPY">Cromotherapy</string>
-    <string name="TEMPERTURE">Temperture</string>
+    <string name="TEMPERTURE">Temperature</string>
 
     <!-- EngineFragment -->
     <string name="ENGINE">Engine</string>
@@ -92,13 +92,14 @@
     <string name="SELECT_LIGHT_COLOR">Select the color for %1$s:</string>
 
     <!-- TemperatureFragment -->
-    <string name="SELECT_TEMPERTURE">Select the temperture of the tub:</string>
+    <string name="SELECT_TEMPERTURE">Select the temperature of the tub:</string>
     <string name="CELSIUS">°C</string>
 
     <!-- @ WifiFragments @ -->
 
     <!-- WifiControl -->
-    <string name="NETWORK_SETUP">Network Setup</string>
+    <string name="NETWORK_SETUP">Connect over Wifi</string>
+    <string name="NETWORK_AVAIL">Function in development. We\'re working hard on this.</string>
     <string name="NETWORK_SETUP_C">Network Setup</string>
 
     <!-- InitialFragment ~ Class -->

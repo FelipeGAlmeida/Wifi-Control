@@ -98,7 +98,8 @@
     <!-- @ WifiFragments @ -->
 
     <!-- Wifi Control -->
-    <string name="NETWORK_SETUP">Configurações de Rede</string>
+    <string name="NETWORK_SETUP">Conectar via Wifi</string>
+    <string name="NETWORK_AVAIL">Função em desenvolvimento. Estamos trabalhando nisso.</string>
     <string name="NETWORK_SETUP_C">Config. de Rede</string>
 
     <!-- InitialFragment ~ Class -->

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import br.com.agte.agt_tubproject.Activities.MainActivity;
 import br.com.agte.agt_tubproject.Activities.WifiActivity;
@@ -31,8 +32,9 @@ public class WifiControlFragment extends Fragment {
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getActivity(), WifiActivity.class);
-                startActivity(i);
+//                Intent i = new Intent(getActivity(), WifiActivity.class);
+//                startActivity(i);
+                Toast.makeText(getContext(), getString(R.string.NETWORK_AVAIL), Toast.LENGTH_LONG).show();
             }
         });
 
